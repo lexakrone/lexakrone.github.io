@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>耳朵圣殿-专业听力健康与耳部护理知识平台</title>
+    <meta name="description" content="耳朵圣殿是专注于耳朵健康、听力保护与耳部护理的专业知识平台，提供听力科普、耳部疾病预防、助听设备选购指南及日常护耳方法，帮助您守护听力健康。">
+    <meta name="keywords" content="耳朵圣殿,耳朵健康,听力保护,耳部护理,听力下降,耳鸣,助听器,耳道清洁,听力测试,护耳知识">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: #f7fafc; color: #2d3748; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* 页眉 */
+        .site-header { background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); color: #fff; padding: 16px 0; border-bottom: 3px solid #38b2ac; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .logo a { color: #fff; text-decoration: none; font-size: 1.6rem; font-weight: 700; letter-spacing: 2px; }
+        .logo span { color: #4fd1c5; }
+        .header-tagline { font-size: 0.85rem; color: #cbd5e0; }
+        .search-box { display: flex; align-items: center; }
+        .search-box input { padding: 8px 14px; border: none; border-radius: 20px 0 0 20px; outline: none; width: 180px; font-size: 0.9rem; }
+        .search-box button { background: #38b2ac; color: #fff; border: none; padding: 8px 16px; border-radius: 0 20px 20px 0; cursor: pointer; font-size: 0.9rem; }
+        
+        /* 导航 */
+        .main-nav { background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .nav-list { display: flex; list-style: none; flex-wrap: wrap; }
+        .nav-list li a { display: block; padding: 12px 18px; text-decoration: none; color: #2d3748; font-weight: 500; transition: all 0.3s; border-bottom: 2px solid transparent; }
+        .nav-list li a:hover, .nav-list li a.active { color: #38b2ac; border-bottom-color: #38b2ac; }
+        
+        /* 首屏 Hero */
+        .hero { background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 50%, #81e6d9 100%); padding: 50px 0; }
+        .hero-content { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-text h1 { font-size: 2.2rem; color: #1a202c; margin-bottom: 15px; line-height: 1.2; }
+        .hero-text h1 span { color: #2b6cb0; }
+        .hero-text p { font-size: 1.05rem; color: #2d3748; margin-bottom: 12px; }
+        .hero-cta { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn { display: inline-block; padding: 10px 24px; border-radius: 30px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .btn-primary { background: #2b6cb0; color: #fff; }
+        .btn-primary:hover { background: #2c5282; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(43,108,176,0.3); }
+        .btn-outline { background: transparent; color: #2b6cb0; border: 2px solid #2b6cb0; }
+        .btn-outline:hover { background: #2b6cb0; color: #fff; }
+        .hero-visual { flex: 1; min-width: 260px; text-align: center; }
+        .hero-icon { font-size: 6rem; color: #2b6cb0; line-height: 1; }
+        .hero-visual p { font-size: 0.9rem; color: #4a5568; margin-top: 8px; }
+        
+        /* 内容区通用 */
+        .section { padding: 45px 0; }
+        .section-title { text-align: center; margin-bottom: 30px; }
+        .section-title h2 { font-size: 1.8rem; color: #1a202c; position: relative; display: inline-block; padding-bottom: 10px; }
+        .section-title h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: #38b2ac; border-radius: 2px; }
+        .section-title p { color: #718096; margin-top: 8px; }
+        
+        /* 知识卡片 */
+        .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .knowledge-card { background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #38b2ac; }
+        .knowledge-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .knowledge-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #2b6cb0; }
+        .knowledge-card p { font-size: 0.95rem; color: #4a5568; }
+        .card-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+        
+        /* 栏目区块 */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .info-item { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .info-item:hover { transform: translateY(-3px); }
+        .info-body { padding: 20px; }
+        .info-body h3 { font-size: 1.1rem; margin-bottom: 8px; color: #1a202c; }
+        .info-body p { font-size: 0.9rem; color: #718096; }
+        .tag { display: inline-block; background: #e6fffa; color: #2b6cb0; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-bottom: 10px; }
+        
+        /* 听力保护方案 */
+        .protect-bg { background: #edf2f7; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .step-item { background: #fff; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .step-num { width: 40px; height: 40px; background: #38b2ac; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 12px; }
+        .step-item h3 { font-size: 1rem; margin-bottom: 8px; }
+        .step-item p { font-size: 0.85rem; color: #718096; }
+        
+        /* 常见问题 */
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: #fff; border-radius: 8px; margin-bottom: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .faq-question { font-weight: 600; color: #1a202c; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .faq-question span { font-size: 1.2rem; color: #38b2ac; }
+        .faq-answer { margin-top: 12px; font-size: 0.9rem; color: #4a5568; display: none; }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-icon { transition: transform 0.3s; }
+        
+        /* 产品对比表 */
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        th { background: #2b6cb0; color: #fff; padding: 12px 15px; text-align: left; font-weight: 600; }
+        td { padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+        tr:nth-child(even) { background: #f7fafc; }
+        
+        /* 页脚 */
+        .site-footer { background: #1a202c; color: #cbd5e0; padding: 40px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-col h4 { color: #fff; margin-bottom: 15px; font-size: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 8px; }
+        .footer-col a { color: #a0aec0; text-decoration: none; font-size: 0.9rem; }
+        .footer-col a:hover { color: #4fd1c5; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #2d3748; font-size: 0.8rem; color: #718096; }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 1.6rem; }
+            .hero-icon { font-size: 4rem; }
+            .section { padding: 30px 0; }
+            .section-title h2 { font-size: 1.4rem; }
+            .search-box input { width: 120px; }
+            .nav-list li a { padding: 10px 12px; font-size: 0.9rem; }
+        }
+        @media (max-width: 480px) {
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            .search-box { width: 100%; }
+            .search-box input { flex: 1; width: auto; }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+    <!-- 页眉 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="#">耳朵<span>圣殿</span></a>
+                <div class="header-tagline">专业听力健康知识平台</div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="搜索护耳知识..." aria-label="搜索护耳知识">
+                <button>搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航 -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#knowledge">听力科普</a></li>
+                <li><a href="#protect">护耳方案</a></li>
+                <li><a href="#guide">选购指南</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#resources">资源中心</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首屏 Hero -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>耳朵<span>圣殿</span> · 守护每一次聆听</h1>
+                <p>耳朵是我们感知世界的重要器官，耳部健康直接影响生活质量。耳朵圣殿致力于为每一个关心听力健康的人提供科学、可靠、实用的耳朵护理知识。</p>
+                <p>从日常清洁到听力保护，从耳鸣应对到助听器选择，我们为您提供一站式专业指导。</p>
+                <div class="hero-cta">
+                    <a href="#knowledge" class="btn btn-primary">开始了解听力</a>
+                    <a href="#protect" class="btn btn-outline">查看护耳方案</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-icon">👂</div>
+                <p>健康的耳朵 · 清晰的世界</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 听力科普栏目 -->
+    <section class="section" id="knowledge">
+        <div class="container">
+            <div class="section-title">
+                <h2>听力科普知识</h2>
+                <p>从基础到进阶，建立正确的耳部健康认知</p>
+            </div>
+            <div class="knowledge-grid">
+                <article class="knowledge-card">
+                    <span class="card-icon">🔬</span>
+                    <h3>耳朵的结构与功能</h3>
+                    <p>耳朵分为外耳、中耳和内耳三部分。外耳收集声音，中耳传递声波，内耳将声波转化为神经信号。了解基础结构有助于我们正确认识听力问题。</p>
+                </article>
+                <article class="knowledge-card">
+                    <span class="card-icon">📉</span>
+                    <h3>听力下降的早期信号</h3>
+                    <p>频繁要求他人重复说话、电视音量越调越高、在嘈杂环境中听不清对话……这些可能是听力下降的早期表现。及早发现，才能及早干预。</p>
+                </article>
+                <article class="knowledge-card">
+                    <span class="card-icon">💧</span>
+                    <h3>正确清洁耳道的方法</h3>
+                    <p>耳垢并非"脏东西"，它有保护耳道的作用。不当掏耳可能导致感染、鼓膜损伤。科学的清洁方式是用湿毛巾擦拭外耳即可，避免深入耳道。</p>
+                </article>
+                <article class="knowledge-card">
+                    <span class="card-icon">🚨</span>
+                    <h3>耳鸣的成因与应对</h3>
+                    <p>耳鸣可能由多种因素引起：噪音暴露、压力、某些药物或基础疾病。如果耳鸣持续不退，建议及时就医检查，寻找潜在病因。</p>
+                </article>
+                <article class="knowledge-card">
+                    <span class="card-icon">🎧</span>
+                    <h3>耳机使用的安全指南</h3>
+                    <p>遵循"60-60原则"：音量不超过最大音量的60%，连续使用不超过60分钟。尽量选择头戴式耳机而非入耳式，减少对耳道和鼓膜的刺激。</p>
+                </article>
+                <article class="knowledge-card">
+                    <span class="card-icon">🧬</span>
+                    <h3>年龄与听力变化</h3>
+                    <p>随着年龄增长，听力自然会出现一定程度退化，尤其是对高频率声音的敏感度下降。定期进行听力检查有助于及时了解自身听力状况。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 听力保护方案 -->
+    <section class="section protect-bg" id="protect">
+        <div class="container">
+            <div class="section-title">
+                <h2>日常听力保护方案</h2>
+                <p>简单可执行的护耳习惯，从现在开始培养</p>
+            </div>
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h3>控制音量</h3>
+                    <p>使用耳机时音量不超过60%，避免长时间处于高分贝环境中。若在嘈杂场所，佩戴降噪设备而非调高音量。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h3>规律休息</h3>
+                    <p>每使用耳机60分钟，休息10-15分钟。给听觉系统充分的恢复时间，减少疲劳累积。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h3>科学清洁</h3>
+                    <p>用软毛巾清洁外耳即可，避免使用棉签深入耳道。若感觉耳垢过多或堵塞，请到耳鼻喉科就诊处理。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <h3>定期检查</h3>
+                    <p>每年进行一次基础听力检查，尤其是有家族听力问题史或长期噪音暴露的人群。早发现问题，早采取对策。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <h3>健康生活</h3>
+                    <p>控制血压、血糖，戒烟限酒，适当运动。良好的全身血液循环有助于维持内耳的正常功能。</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">6</div>
+                    <h3>及时就医</h3>
+                    <p>突发性耳聋、耳朵疼痛或持续耳鸣，应尽快就医。部分耳部疾病在早期治疗效果更好。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 助听设备选购指南 -->
+    <section class="section" id="guide">
+        <div class="container">
+            <div class="section-title">
+                <h2>助听设备选购指南</h2>
+                <p>了解不同设备的特点，做出合适的选择</p>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>设备类型</th>
+                            <th>适用人群</th>
+                            <th>主要优势</th>
+                            <th>注意事项</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>耳背式助听器</td>
+                            <td>中重度听力损失用户</td>
+                            <td>功率大、易操作、电池更换方便</td>
+                            <td>体积较大，外观不够隐蔽</td>
+                        </tr>
+                        <tr>
+                            <td>耳内式助听器</td>
+                            <td>轻中度听力损失用户</td>
+                            <td>隐蔽美观、贴近耳道自然听感</td>
+                            <td>功率有限，需定期维护</td>
+                        </tr>
+                        <tr>
+                            <td>骨导助听器</td>
+                            <td>外耳或中耳问题用户</td>
+                            <td>避开外耳中耳直接刺激内耳</td>
+                            <td>需根据具体病因评估效果</td>
+                        </tr>
+                        <tr>
+                            <td>个人声音放大器</td>
+                            <td>轻微听力不便人群</td>
+                            <td>价格较低、入手门槛低</td>
+                            <td>非医疗设备，效果因人而异</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-top: 25px; text-align: center;">
+                <a href="#faq" class="btn btn-outline">了解更多选购建议</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新资讯与资源 -->
+    <section class="section protect-bg" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>耳部健康资讯</h2>
+                <p>关注听力健康领域的基础知识与实用信息</p>
+            </div>
+            <div class="info-grid">
+                <article class="info-item">
+                    <div class="info-body">
+                        <span class="tag">基础科普</span>
+                        <h3>什么是"安全音量"？</h3>
+                        <p>85分贝是常见的噪声安全阈值。超过这个水平，持续暴露时间越长，听力损伤风险越大。日常环境中的吹风机约90分贝，摩托车约95分贝。</p>
+                    </div>
+                </article>
+                <article class="info-item">
+                    <div class="info-body">
+                        <span class="tag">护耳误区</span>
+                        <h3>关于"采耳"的真相</h3>
+                        <p>采耳店使用的工具若消毒不彻底，可能传播真菌或细菌感染。频繁采耳也会破坏耳道自洁功能。专业耳部清洁应前往正规医院。</p>
+                    </div>
+                </article>
+                <article class="info-item">
+                    <div class="info-body">
+                        <span class="tag">儿童护耳</span>
+                        <h3>儿童听力保护要点</h3>
+                        <p>儿童听觉系统发育尚未完全，对声音损伤更为敏感。避免使用入耳式耳机，控制电子设备音量，并关注儿童是否出现语言发育迟缓的信号。</p>
+                    </div>
+                </article>
+                <article class="info-item">
+                    <div class="info-body">
+                        <span class="tag">职业防护</span>
+                        <h3>噪音环境工作者的护耳建议</h3>
+                        <p>在工厂、施工现场等高分贝环境中应佩戴专业耳塞或耳罩。选择降噪值合适的防护用品，并确保正确佩戴方式。</p>
+                    </div>
+                </article>
+                <article class="info-item">
+                    <div class="info-body">
+                        <span class="tag">生活习惯</span>
+                        <h3>游泳时的耳部保护</h3>
+                        <p>游泳时使用防水耳塞可以减少外耳道感染风险。游泳后可以将头偏向一侧轻轻排水，保持耳道干燥。</p>
+                    </div>
+                </article>
+                <article class="info-item">
+                    <div class="info-body">
+                        <span class="tag">睡眠与耳部</span>
+                        <h3>睡眠与耳鸣的关系</h3>
+                        <p>长期睡眠不足可能加重耳鸣感受。保持规律作息、减少睡前刺激，有助于缓解部分功能性耳鸣症状。</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>为您解答关于耳部健康的常见疑问</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        耳朵进水了应该如何处理？
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        将头偏向进水一侧，单脚跳跃几次可帮助水流出。也可以用干净的毛巾角轻轻吸附外耳道口的水分。若进水后出现疼痛、闷堵感持续超过一天，建议就医检查。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        经常戴耳机听音乐会影响听力吗？
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        长时间高音量使用耳机是导致噪音性听力损失的主要原因之一。建议遵循"60-60原则"，并定期让耳朵休息。如果发现需要不断提高音量才能听清，可能意味着听力已经受到影响。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        耳屎需要定期清理吗？
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        正常情况下耳道有自洁功能，耳屎会随着咀嚼、说话等动作自然排出。不建议自行用棉签、挖耳勺等工具深入耳道。如果感觉耳屎过多堵塞影响听力，应到耳鼻喉科让医生处理。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        耳鸣会自己消失吗？
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        短暂的耳鸣（如长时间处于安静环境后突然出现的响声）可能自行消失。但如果耳鸣持续数天不缓解，或伴随听力下降、眩晕等症状，应尽快就医排查原因。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        助听器会让听力越来越差吗？
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        在专业验配师的指导下正确使用助听器，不会加速听力下降。相反，合适的助听器可以减轻听觉系统的负担，延缓听觉功能退化。关键在于选择适合的设备和正确的调试。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        平时可以做什么来保护听力？
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        控制耳机音量和时长、远离高分贝噪音源、保持耳道干燥清洁、规律作息、控制基础疾病、定期进行听力检查，这些都是保护听力的有效方式。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>耳朵圣殿</h4>
+                    <p>致力于提供科学、严谨、实用的耳部健康和听力保护知识。让每个人都能拥有健康的聆听体验。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#knowledge">听力科普</a></li>
+                        <li><a href="#protect">护耳方案</a></li>
+                        <li><a href="#guide">选购指南</a></li>
+                        <li><a href="#faq">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>热门内容</h4>
+                    <ul>
+                        <li><a href="#knowledge">耳朵结构图解</a></li>
+                        <li><a href="#protect">耳机使用安全</a></li>
+                        <li><a href="#guide">助听器选型建议</a></li>
+                        <li><a href="#resources">耳鸣缓解方法</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>免责声明</h4>
+                    <p>本站内容仅供健康科普参考，不能替代专业医疗诊断。如有耳部不适，请及时前往正规医疗机构就诊。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 耳朵圣殿 Ear Temple · 守护听力健康 · 本网站内容仅供参考</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 互动效果
+        document.querySelectorAll('.faq-question').forEach(function(item) {
+            item.addEventListener('click', function() {
+                var parent = this.parentElement;
+                parent.classList.toggle('open');
+                var icon = this.querySelector('.faq-icon');
+                if (parent.classList.contains('open')) {
+                    icon.textContent = '×';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
